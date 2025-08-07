@@ -1,0 +1,22 @@
+{% extends "common_codes/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="col-6"  >
+    <h2>{{ item.title }}</h2>
+    <p><strong>Description:</strong> {{ item.description }}</p>
+    <p><strong>Location:</strong> {{ item.location }}</p>
+    <p><strong>Date Found:</strong> {{ item.date_found }}</p>
+
+    {% if item.finder_email %}
+        <a href="mailto:{{ item.finder_email }}?subject=Regarding '{{ item.title }}'" class="btn btn-success mt-3">
+            Mail the finder
+        </a>
+    {% else %}
+        <p class="text-muted mt-3">Finder's email not available.</p>
+    {% endif %}
+
+    <a href="{% url 'list_lost' %}" class="btn btn-secondary mt-3">Back to Home</a>
+</div>
+</div>
+{% endblock %}

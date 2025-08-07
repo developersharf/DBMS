@@ -1,0 +1,27 @@
+{% extends 'common_codes/base.html' %}
+{% load static %}
+
+{% block title %}Submit a Found Item{% endblock title %}
+
+{% block content %}
+<div class="container mt-5 card p-5" style="max-width: 600px;">
+    <h2 class="mb-4">Submit a Found Item</h2>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                <br>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors|striptags }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+{% endblock content %}

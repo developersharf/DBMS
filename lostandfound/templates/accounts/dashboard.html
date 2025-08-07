@@ -1,0 +1,66 @@
+{% extends 'common_codes/base.html' %}
+
+{% block title %}
+    Dashboard
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4">
+        <h2 class="text-success mb-3">Welcome, {{ user.username }}!</h2>
+        <p class="lead">This is your dashboard. Use the links below to manage your items:</p>
+        <ul class="list-group list-group-flush mt-3 mb-3">
+            <li class="list-group-item">
+                <a href="{% url 'user_lost_items' %}" class="text-decoration-none text-dark">
+                    📦 View Your Lost Items
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="{% url 'user_found_items' %}" class="text-decoration-none text-dark">
+                    🔍 View Your Found Items
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="{% url 'accounts:wochangepassword' %}" class="text-decoration-none text-dark">
+                    🔐 Forgot Password / Reset
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="{% url 'accounts:logout' %}" class="text-decoration-none text-danger">
+                    🚪 Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

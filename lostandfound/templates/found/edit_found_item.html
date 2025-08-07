@@ -1,0 +1,27 @@
+{% extends 'common_codes/base.html' %}
+
+{% block title %}Edit Found Item{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-5 w-75">
+        <h2 class="text-success mb-4">✏️ Edit Found Item</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+               {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                <br>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors|striptags }}</div>
+                {% endif %}
+            </div>
+           {% endfor %}
+            <button type="submit" class="btn btn-success">Save Changes</button>
+            <a href="{% url 'user_found_items' %}" class="btn btn-outline-secondary ms-2">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

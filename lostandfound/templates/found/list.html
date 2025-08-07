@@ -1,0 +1,54 @@
+{% extends 'common_codes/base.html' %}
+{% block content %}
+<div class="container mt-1">
+    <br>
+    <div class="d-flex align-items-center mb-2 mt-1 col-6 ">
+        <h2 class="me-3">Found Items Feed</h2>
+        <a class="btn btn-danger" href="{% url 'list_lost' %}" role="button">Lost items</a>
+      </div>
+      <div class="mb-3">
+        <span class="mb-3"><strong style="color: darkgreen;">Total Found Items:</strong> {{ total_found }}</span>
+      </div>
+  <div class="d-flex flex-column gap-4">
+    {% for item in items %}
+    <div class="col-6">
+    <div class="card p-1" style="background-color: #e6f3ee;">
+      <div class="card-body">
+        <p class="card-text"><strong style="color: darkgreen;">Submitted by:</strong> {{ item.1 }}</p>
+        <h6 class="card-subtitle mb-2 text-muted"><strong>{{ item.4 }}</strong> | {{ item.3|timesince }} ago</h6>
+        <br>
+        <h5 class="card-title">{{ item.2 }}</h5>
+        
+        <h6 class="card-subtitle mb-2 text-muted">{{ item.5 }}</h6>
+        
+      </div>
+    </div>
+</div>
+    {% endfor %}
+    <div class="mt-4">
+        <nav class="d-flex" style="color: white;">
+          <ul class="pagination bg-success" style="color: white;">
+            {% if page > 1 %}
+            <li class="page-item" style="color: white;">
+              <a class="page-link" href="?page={{ page|add:"-1" }}" style="color: white;">Previous</a>
+            </li>
+            {% endif %}
+      
+            {% for p in page_range %}
+            <li class="page-item {% if p == page %}active{% endif %}" style="color: white;">
+              <a class="page-link bg-success" href="?page={{ p }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+      
+            {% if page < total_pages %}
+            <li class="page-item" style="color: white;">
+              <a class="page-link bg-success" href="?page={{ page|add:"1" }}" style="color: white;">Next</a>
+            </li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'common_codes/base.html' %}
+
+{% block title %}Confirm Delete{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-5 w-75">
+        <h2 class="text-danger mb-4">🗑️ Confirm Delete</h2>
+        <p>Are you sure you want to delete "<strong>{{ item.title }}</strong>"?</p>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, delete</button>
+            <a href="{% url 'user_found_items' %}" class="btn btn-outline-secondary ms-2">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
